@@ -24,15 +24,15 @@ import Foundation
 /// Represents a general key in crypto domain.
 /// Basically it is a wrapper of a native `SecKey`. All keys should be created by some DER raw data, but they could
 /// have its own clustered implementation.
-protocol CryptoKey {
+public protocol CryptoKey {
     var key: SecKey { get }
     init(key: SecKey)
     init(der data: Data) throws
 }
 
-protocol CryptoPublicKey: CryptoKey {}
+public protocol CryptoPublicKey: CryptoKey {}
 
-protocol CryptoPrivateKey: CryptoKey {}
+public protocol CryptoPrivateKey: CryptoKey {}
 
 extension CryptoKey {
     /// Creates a key with a base64-encoded string representing DER data.
@@ -112,8 +112,8 @@ public extension Crypto {
     /// Represents an ECDSA public key. The raw data of this key should follow X9.62 for EC parameters encoding or
     /// it should be just a plain key with uncompressed indication. Compressed EC key is not supported yet.
     // RFC5480 https://tools.ietf.org/html/rfc5480
-    public struct ECDSAPublicKey: CryptoPublicKey {
-        let key: SecKey
+    struct ECDSAPublicKey: CryptoPublicKey {
+        public let key: SecKey
         public init(key: SecKey) { self.key = key }
         
         public init(der data: Data) throws {
