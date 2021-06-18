@@ -112,7 +112,7 @@ extension Crypto {
     /// Represents an ECDSA public key. The raw data of this key should follow X9.62 for EC parameters encoding or
     /// it should be just a plain key with uncompressed indication. Compressed EC key is not supported yet.
     // RFC5480 https://tools.ietf.org/html/rfc5480
-    struct ECDSAPublicKey: CryptoPublicKey {
+    public struct ECDSAPublicKey: CryptoPublicKey {
         let key: SecKey
         init(key: SecKey) { self.key = key }
         

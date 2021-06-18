@@ -51,9 +51,9 @@ extension CryptoData {
     }
 }
 
-struct Crypto {}
+public struct Crypto {}
 /// Data Types of Crypto related domain.
-extension Crypto {
+public extension Crypto {
     /// Represents unencrypted data. The plain data could be encrypted or signed.
     struct PlainData: CryptoData {
         let raw: Data
