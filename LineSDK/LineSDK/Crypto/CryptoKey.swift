@@ -107,16 +107,16 @@ extension Crypto {
 
 // MARK: - ECDSA Keys
 // Now only public key support is provided (since we only use public keys to verify a signature).
-extension Crypto {
+public extension Crypto {
     
     /// Represents an ECDSA public key. The raw data of this key should follow X9.62 for EC parameters encoding or
     /// it should be just a plain key with uncompressed indication. Compressed EC key is not supported yet.
     // RFC5480 https://tools.ietf.org/html/rfc5480
     public struct ECDSAPublicKey: CryptoPublicKey {
         let key: SecKey
-        init(key: SecKey) { self.key = key }
+        public init(key: SecKey) { self.key = key }
         
-        init(der data: Data) throws {
+        public init(der data: Data) throws {
             let keyData = try data.x509HeaderStrippedForEC()
             self.key = try SecKey.createKey(derData: keyData, keyClass: .publicKey, keyType: .ec)
         }

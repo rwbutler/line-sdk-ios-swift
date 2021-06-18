@@ -41,7 +41,7 @@ public struct JWT: Equatable {
     let rawValue: String
     let rawComponents: [String]
     
-    init(text: String) throws {
+    public init(text: String) throws {
         rawValue = text
         rawComponents = text.components(separatedBy: ".")
         guard rawComponents.count == 3 else {
@@ -60,14 +60,14 @@ public struct JWT: Equatable {
         signature = sigData
     }
     
-    init(data: Data) throws {
+    public init(data: Data) throws {
         guard let text = String(data: data, encoding: .utf8) else {
             throw CryptoError.generalError(reason: .dataConversionFailed(data: data, encoding: .utf8))
         }
         try self.init(text: text)
     }
 
-    func verify(with key: CryptoPublicKey) throws -> Bool {
+    public func verify(with key: CryptoPublicKey) throws -> Bool {
         guard let alg = JWA.Algorithm(rawValue: header.algorithm) else {
             throw CryptoError.JWTFailed(reason: .unsupportedHeaderAlgorithm(name: header.algorithm))
         }
