@@ -50,7 +50,7 @@ extension CryptoKey {
     ///
     /// - Parameter string: The PEM encoded string.
     /// - Throws: Any possible error while creating the key.
-    init(pem string: String) throws {
+    public init(pem string: String) throws {
         let base64String = try string.markerStrippedBase64()
         try self.init(base64Encoded: base64String)
     }
